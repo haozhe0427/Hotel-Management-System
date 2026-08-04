@@ -33,11 +33,4 @@ Here are four possible roles within the system, each with its unique functionali
 - View Menu: Display the current menu with all items and prices.
 - Record Food Orders: Record food orders from guests, including room number and items ordered.
 - Generate Sales Report: Summarize total sales and most popular dishes.
-
-Example Program Outline
-Here’s a general structure to get started with the project:
-- Main Menu: Display options for selecting a role (e.g., Administrator, Receptionist).
-- Role-Specific Menus: Based on the role selected, show relevant functionalities.
-- File Operations: Read, write, update, and delete data in respective files for each functionality.
-- Error Handling: Include checks to handle file access errors and validate user input.
 """
