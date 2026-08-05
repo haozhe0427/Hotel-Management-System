@@ -1,8 +1,8 @@
 Case Study: Hotel Management System (REMAKE)
 
 The Hotel Management System manages operations related to hotel bookings, guest/customer management,
-and food services through different roles. Each role has specific functionalities to streamline operations. A
-ll data is managed using file handling, including adding, reading, updating, and deleting data from text files.
+and food services through different roles. Each role has specific functionalities to streamline operations. 
+All data is managed using file handling, including adding, reading, updating, and deleting data from text files.
 The system operates through a command-line interface with menus customized for each role.
 
 Here are four possible roles within the system, each with its unique functionalities:
