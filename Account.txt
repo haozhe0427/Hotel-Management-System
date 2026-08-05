@@ -1,0 +1,3 @@
+HMS001;Ding Hao Zhe;018-7684427;haozhe0427;12345;Administrator
+HMS002;Wong Xin Yi;019-4927421;xinyi1230;12345;Receptionist
+HMS003;Name;124-4452241;Name123;12345;Restaurant Manager
