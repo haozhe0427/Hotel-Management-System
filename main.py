@@ -36,6 +36,9 @@ Here are four possible roles within the system, each with its unique functionali
 """
 
 
+# ===================================================================================================================== #
+# Main Dashboard                                                                                                        #
+# ===================================================================================================================== #
 def dashboard():
     print("==================== Hotel Management System ====================")
     print("Roles:")
@@ -47,6 +50,9 @@ def dashboard():
     print("")
 
 
+# ===================================================================================================================== #
+# Credential Validation                                                                                                 #
+# ===================================================================================================================== #
 def credential_Validation(role_name):
     print("==================== Hotel Management System ====================")
     print("Please Login by username & password")
@@ -128,29 +134,110 @@ def Add_New_Rooms():
 def Remove_Rooms():
     print("==================== Hotel Management System (Administrator) ====================")
     roomNumber_ToDelete = input("Please enter room number to delete: ")
+
+    if roomNumber_ToDelete == "":
+        print("Room number cannot be empty. Please try again.")
+        return
+
+    updated_Lines = []
+    room_Found = 0
+
     try:
         with open('Rooms.txt') as file:
-            lines = file.readlines()
+            for line in file:
+                room_Information = line.strip().split(";")
+                roomNumber = room_Information[0]
+
+                if roomNumber == roomNumber_ToDelete:
+                    room_Found += 1
+                    updated_Lines.append('')
+                else:
+                    updated_Lines.append(line)
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
         return
 
-    room_Found = False
-    updated_Lines = []
-    for line in lines:
-        room_Information = line.strip().split(";")
-        roomNumber = room_Information[0]
-        if roomNumber == roomNumber_ToDelete:
-            room_Found = True
-        else:
-            updated_Lines.append(line)
+    if room_Found == 0:
+        print("Room " + roomNumber_ToDelete + " not found.")
+        return
 
-    if room_Found:
+    try:
         with open('Rooms.txt', 'w') as file:
             file.writelines(updated_Lines)
         print("Room " + roomNumber_ToDelete + " removed successfully.")
-    else:
-        print("Room " + roomNumber_ToDelete + " not found.")
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+
+# ===================================================================================================================== #
+# ADMINISTRATOR, Function 3. Update Room Information: Edit room details (e.g., price, availability status).             #
+# ===================================================================================================================== #
+def Update_Room_Information():
+    print("==================== Hotel Management System (Administrator) =====================")
+    roomNumber_ToUpdate = input("Please enter room number to update: ").strip()
+
+    if roomNumber_ToUpdate == "":
+        print("Room number cannot be empty. Please try again.")
+        return
+
+    updated_Lines = []
+    room_Found = 0
+
+    try:
+        with open('Rooms.txt') as file:
+            for line in file:
+                room_Information = line.strip().split(";")
+                roomNumber = room_Information[0]
+                roomType = room_Information[1]
+                roomPrice = room_Information[2]
+                roomAvailability = room_Information[3]
+
+                if roomNumber == roomNumber_ToUpdate:
+                    room_Found += 1
+                    while True:
+                        print("")
+                        print("Room Number: " + roomNumber)
+                        print("Room Type: " + roomType)
+                        print("Room Price: " + roomPrice)
+                        print("Availability: " + roomAvailability)
+                        print("")
+                        print("1. Room Type")
+                        print("2. Room Price")
+                        print("3. Switch Room Availability")
+                        print("0. Exit / Finish")
+                        updateOption = input("Please select a room " + roomNumber_ToUpdate + " information to update: ")
+
+                        if updateOption == "1":
+                            roomType = input("Please enter new room type: ")
+                        elif updateOption == "2":
+                            roomPrice = input("Please enter new room price: RM ")
+                        elif updateOption == "3":
+                            if roomAvailability == "Yes":
+                                roomAvailability = "No"
+                            else:
+                                roomAvailability = "Yes"
+                        elif updateOption == "0":
+                            break
+                        else:
+                            print("Invalid option. Please try again.")
+                    updated_Lines.append(roomNumber_ToUpdate + ";" + roomType + ";RM " + roomPrice + ";" + roomAvailability + "\n")
+                else:
+                    updated_Lines.append(line)
+
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+        return
+
+    if room_Found == 0:
+        print("Room " + roomNumber_ToUpdate + " does not exist. Please try again.")
+        return
+
+    try:
+        with open('Rooms.txt', 'w') as file:
+            file.writelines(updated_Lines)
+        print("Room " + roomNumber_ToUpdate + " updated successfully.")
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
 
 
 # ===================================================================================================================== #
@@ -207,7 +294,7 @@ def main():
                         # ============================================================================================= #
                         # Update Room Information: Edit room details (e.g., price, availability status).                #
                         # ============================================================================================= #
-                        print("3. Update Room Information")
+                        Update_Room_Information()
 
                     elif administrator_Option == "4":
                         # ============================================================================================= #
@@ -222,7 +309,6 @@ def main():
                         View_All_Data()
 
                     elif administrator_Option == "0":
-                        administratorDashboard_isRunning = False
                         break
 
                     else:
@@ -277,7 +363,6 @@ def main():
                         print("5. View All Bookings")
 
                     elif receptionist_Option == "0":
-                        receptionistDashboard_isRunning = False
                         break
 
                     else:
@@ -332,7 +417,6 @@ def main():
                         print("5. View Food Orders")
 
                     elif hotelGuest_Option == "0":
-                        hotelGuestDashboard_isRunning = False
                         break
 
                     else:
@@ -387,7 +471,6 @@ def main():
                         print("5. Generate Sales Report")
 
                     elif restaurantManager_Option == "0":
-                        restaurantDashboard_isRunning = False
                         break
 
                     else:

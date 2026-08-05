@@ -2,4 +2,4 @@
 102;Single;RM 100;Yes
 103;Single;RM 100;Yes
 104;Double;RM 100;Yes
-105;Suite;RM 150;Yes
+105;Double;RM 120;No
