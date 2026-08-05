@@ -74,6 +74,98 @@ def credential_Validation(role_name):
         return False
 
 
+# ===================================================================================================================== #
+# ADMINISTRATOR, Function 1.Add New Rooms: Add details of new rooms (Room number, type, price, availability).           #
+# ===================================================================================================================== #
+def Add_New_Rooms():
+    print("==================== Hotel Management System (Administrator) ====================")
+
+    # 1. Input Room Number
+    new_RoomNumber = input("Please enter new room number: ")
+    try:
+        with open('Rooms.txt') as file:
+            for line in file:
+                room_information = line.strip().split(";")
+                roomNumber = room_information[0]
+                if roomNumber == new_RoomNumber:
+                    print("Room Number Already Exists")
+                    return
+                if not new_RoomNumber.isnumeric():
+                    print("Invalid room number. Please try again.")
+                    return
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+    # 2. Input Room Type
+    roomType_Option = input("Please Select your room type (1. Single / 2. Double / 3. Suite): ")
+    if roomType_Option == "1":
+        roomType = "Single"
+    elif roomType_Option == "2":
+        roomType = "Double"
+    elif roomType_Option == "3":
+        roomType = "Suite"
+    else:
+        print("Invalid room type. Please try again.")
+        return
+
+    # 3. Input Room Price
+    roomPrice = input("Please enter room price: RM")
+    if not roomPrice.isnumeric():
+        print("Invalid room price. Please try again.")
+        return
+    try:
+        with open('Rooms.txt', 'a') as file:
+            file.write(new_RoomNumber + ";" + roomType + ";RM "+ roomPrice + ";Yes\n")
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+    print("\nRoom " + new_RoomNumber + " added successfully.")
+
+
+# ===================================================================================================================== #
+# ADMINISTRATOR, Function 2. Remove Rooms: Remove a room from the system by its room number.                            #
+# ===================================================================================================================== #
+def Remove_Rooms():
+    print("==================== Hotel Management System (Administrator) ====================")
+    roomNumber_ToDelete = input("Please enter room number to delete: ")
+    try:
+        with open('Rooms.txt') as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+        return
+
+    room_Found = False
+    updated_Lines = []
+    for line in lines:
+        room_Information = line.strip().split(";")
+        roomNumber = room_Information[0]
+        if roomNumber == roomNumber_ToDelete:
+            room_Found = True
+        else:
+            updated_Lines.append(line)
+
+    if room_Found:
+        with open('Rooms.txt', 'w') as file:
+            file.writelines(updated_Lines)
+        print("Room " + roomNumber_ToDelete + " removed successfully.")
+    else:
+        print("Room " + roomNumber_ToDelete + " not found.")
+
+
+# ===================================================================================================================== #
+# ADMINISTRATOR, Function 4.View All Data: Display all room and booking information for administrative review.          #
+# ===================================================================================================================== #
+def View_All_Data():
+    print("==================== Hotel Management System (Administrator) ====================")
+    try:
+        with open('Rooms.txt') as file:
+            for line in file:
+                print(line.strip())
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+
 def main():
     mainDashboard_isRunning = True
 
@@ -103,13 +195,13 @@ def main():
                         # ============================================================================================= #
                         # Add New Rooms: Add details of new rooms (Room number, type, price, availability).             #
                         # ============================================================================================= #
-                        print("1. Add New Rooms")
+                        Add_New_Rooms()
 
                     elif administrator_Option == "2":
                         # ============================================================================================= #
                         # Remove Rooms: Remove a room from the system by its room number.                               #
                         # ============================================================================================= #
-                        print("2. Remove Rooms")
+                        Remove_Rooms()
 
                     elif administrator_Option == "3":
                         # ============================================================================================= #
@@ -127,7 +219,7 @@ def main():
                         # ============================================================================================= #
                         # View All Data: Display all room and booking information for administrative review.            #
                         # ============================================================================================= #
-                        print("5. View All Data")
+                        View_All_Data()
 
                     elif administrator_Option == "0":
                         administratorDashboard_isRunning = False
@@ -250,7 +342,7 @@ def main():
         # RESTAURANT MANAGER                                                                                            #
         # ============================================================================================================= #
         elif role_Selected == "4":
-            if credential_Validation("Hotel Guest"):
+            if credential_Validation("Restaurant Manager"):
                 restaurantManagementDashboard_isRunning = True
 
                 while restaurantManagementDashboard_isRunning:
@@ -305,7 +397,7 @@ def main():
             print("==================== Hotel Management System ====================")
             choice = input("Are you sure you want to exit? (Y/N): ")
             if choice.capitalize() == "Y":
-                running = False
+                mainDashboard_isRunning = False
             elif choice.capitalize() == "N":
                 print("Continuing...")
             else:

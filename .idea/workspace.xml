@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="- Create Hotel Management Syetem dashoboard &amp; dashboard for each roles&#10;- Apply credential validation to login feature">
+    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="- Modify comment structure &#10;- Implement credential validation as function">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Account.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +94,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785900596752</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="- Modify comment structure &#10;- Implement credential validation as function">
+      <option name="closed" value="true" />
+      <created>1785908848630</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1785908848630</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,6 +111,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Create Repository" />
     <MESSAGE value="- Create Hotel Management Syetem dashoboard &amp; dashboard for each roles&#10;- Apply credential validation to login feature" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Create Hotel Management Syetem dashoboard &amp; dashboard for each roles&#10;- Apply credential validation to login feature" />
+    <MESSAGE value="- Modify comment structure &#10;- Implement credential validation as function" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Modify comment structure &#10;- Implement credential validation as function" />
   </component>
 </project>
