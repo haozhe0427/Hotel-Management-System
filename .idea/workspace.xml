@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="Administrator's functions:&#10;- Add_New_Rooms(): Add details of new rooms (Room number, type, price, availability). &#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- View_All_Data: Display all room and booking information for administrative review.">
+    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rooms.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Account.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Account.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -110,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785920494719</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Modify &amp; Write Administrator's functions:&#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- Update_Room_Information(): Edit room details (e.g., price, availability status).">
+      <option name="closed" value="true" />
+      <created>1785937556058</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1785937556058</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,6 +129,7 @@
     <MESSAGE value="- Create Hotel Management Syetem dashoboard &amp; dashboard for each roles&#10;- Apply credential validation to login feature" />
     <MESSAGE value="- Modify comment structure &#10;- Implement credential validation as function" />
     <MESSAGE value="Administrator's functions:&#10;- Add_New_Rooms(): Add details of new rooms (Room number, type, price, availability). &#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- View_All_Data: Display all room and booking information for administrative review." />
-    <option name="LAST_COMMIT_MESSAGE" value="Administrator's functions:&#10;- Add_New_Rooms(): Add details of new rooms (Room number, type, price, availability). &#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- View_All_Data: Display all room and booking information for administrative review." />
+    <MESSAGE value="Modify &amp; Write Administrator's functions:&#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- Update_Room_Information(): Edit room details (e.g., price, availability status)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modify &amp; Write Administrator's functions:&#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- Update_Room_Information(): Edit room details (e.g., price, availability status)." />
   </component>
 </project>

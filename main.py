@@ -34,6 +34,7 @@ Here are four possible roles within the system, each with its unique functionali
 - Record Food Orders: Record food orders from guests, including room number and items ordered.
 - Generate Sales Report: Summarize total sales and most popular dishes.
 """
+from traceback import print_tb
 
 
 # ===================================================================================================================== #
@@ -81,7 +82,7 @@ def credential_Validation(role_name):
 
 
 # ===================================================================================================================== #
-# ADMINISTRATOR, Function 1.Add New Rooms: Add details of new rooms (Room number, type, price, availability).           #
+# ADMINISTRATOR FUNCTIONS                                                                                               #
 # ===================================================================================================================== #
 def Add_New_Rooms():
     print("==================== Hotel Management System (Administrator) ====================")
@@ -128,9 +129,7 @@ def Add_New_Rooms():
     print("\nRoom " + new_RoomNumber + " added successfully.")
 
 
-# ===================================================================================================================== #
-# ADMINISTRATOR, Function 2. Remove Rooms: Remove a room from the system by its room number.                            #
-# ===================================================================================================================== #
+
 def Remove_Rooms():
     print("==================== Hotel Management System (Administrator) ====================")
     roomNumber_ToDelete = input("Please enter room number to delete: ")
@@ -169,9 +168,7 @@ def Remove_Rooms():
         print("Can't read Rooms.txt, Please try again.")
 
 
-# ===================================================================================================================== #
-# ADMINISTRATOR, Function 3. Update Room Information: Edit room details (e.g., price, availability status).             #
-# ===================================================================================================================== #
+
 def Update_Room_Information():
     print("==================== Hotel Management System (Administrator) =====================")
     roomNumber_ToUpdate = input("Please enter room number to update: ").strip()
@@ -190,7 +187,7 @@ def Update_Room_Information():
                 roomNumber = room_Information[0]
                 roomType = room_Information[1]
                 roomPrice = room_Information[2]
-                roomAvailability = room_Information[3]
+                roomAvailability = room_Information[4]
 
                 if roomNumber == roomNumber_ToUpdate:
                     room_Found += 1
@@ -240,9 +237,7 @@ def Update_Room_Information():
         print("Can't read Rooms.txt, Please try again.")
 
 
-# ===================================================================================================================== #
-# ADMINISTRATOR, Function 4.View All Data: Display all room and booking information for administrative review.          #
-# ===================================================================================================================== #
+
 def View_All_Data():
     print("==================== Hotel Management System (Administrator) ====================")
     try:
@@ -251,6 +246,77 @@ def View_All_Data():
                 print(line.strip())
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
+
+
+
+# ===================================================================================================================== #
+# RECEPTIONIST FUNCTIONS                                                                                                #
+# ===================================================================================================================== #
+def Check_Room_Availability():
+    print("==================== Hotel Management System (Administrator) ====================");
+    try:
+        with open('Rooms.txt') as file:
+            for line in file:
+                room_Information = line.strip().split(";")
+                roomAvailability = room_Information[3]
+
+                if roomAvailability == "Yes":
+                    print(line.strip())
+            print("")
+
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+
+
+def Booking_Room():
+    Check_Room_Availability()
+    roomNumber_ToBooking = input("Please enter room number to booking (press 0 to cancel): ")
+
+    if roomNumber_ToBooking == "":
+        print("Room number cannot be empty. Please try again.")
+        return
+
+    if roomNumber_ToBooking == "0":
+        return
+
+    updated_Lines = []
+    room_Found = 0
+
+    try:
+        with open('Rooms.txt') as file:
+            for line in file:
+                room_Information = line.strip().split(";")
+                roomNumber = room_Information[0]
+                roomType = room_Information[1]
+                roomPrice = room_Information[2]
+                roomAvailability = room_Information[3]
+
+                if roomNumber != roomNumber_ToBooking:
+                    updated_Lines.append(line)
+                    continue
+                else:
+                    room_Found += 1
+                    roomAvailability = "No"
+                    updated_Lines.append(roomNumber + ";" +
+                                         roomType + ";" +
+                                         roomPrice + ";" +
+                                         roomAvailability + "\n")
+
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
+    if room_Found == 0:
+        print("Room " + roomNumber_ToBooking + " does not exist. Please try again.")
+        return
+
+    try:
+        with open('Rooms.txt', 'w') as file:
+            file.writelines(updated_Lines)
+        print("Room " + roomNumber_ToBooking + " booking successfully.")
+    except FileNotFoundError:
+        print("Can't read Rooms.txt, Please try again.")
+
 
 
 def main():
@@ -278,39 +344,25 @@ def main():
                     print("")
                     administrator_Option = input("Please Select your option: ")
 
-                    if administrator_Option == "1":
-                        # ============================================================================================= #
-                        # Add New Rooms: Add details of new rooms (Room number, type, price, availability).             #
-                        # ============================================================================================= #
-                        Add_New_Rooms()
+                    # Add New Rooms: Add details of new rooms (Room number, type, price, availability).
+                    if administrator_Option == "1": Add_New_Rooms()
 
-                    elif administrator_Option == "2":
-                        # ============================================================================================= #
-                        # Remove Rooms: Remove a room from the system by its room number.                               #
-                        # ============================================================================================= #
-                        Remove_Rooms()
+                    # Remove Rooms: Remove a room from the system by its room number.
+                    elif administrator_Option == "2": Remove_Rooms()
 
-                    elif administrator_Option == "3":
-                        # ============================================================================================= #
-                        # Update Room Information: Edit room details (e.g., price, availability status).                #
-                        # ============================================================================================= #
-                        Update_Room_Information()
+                    # Update Room Information: Edit room details (e.g., price, availability status).
+                    elif administrator_Option == "3": Update_Room_Information()
 
-                    elif administrator_Option == "4":
-                        # ============================================================================================= #
-                        # Generate Reports: Summarize total bookings and room availability.                             #
-                        # ============================================================================================= #
-                        print("4. Generate Reports")
+                    # Generate Reports: Summarize total bookings and room availability.
+                    elif administrator_Option == "4": print("4. Generate Reports")
 
-                    elif administrator_Option == "5":
-                        # ============================================================================================= #
-                        # View All Data: Display all room and booking information for administrative review.            #
-                        # ============================================================================================= #
-                        View_All_Data()
+                    # View All Data: Display all room and booking information for administrative review.
+                    elif administrator_Option == "5": View_All_Data()
 
-                    elif administrator_Option == "0":
-                        break
+                    # Back to main dashboard
+                    elif administrator_Option == "0": break
 
+                    # Invalid input
                     else:
                         print("Invalid Option. Please try again")
 
@@ -332,17 +384,11 @@ def main():
                     print("")
                     receptionist_Option = input("Please Select your option: ")
 
-                    if receptionist_Option == "1":
-                        # ============================================================================================= #
-                        # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).    #
-                        # ============================================================================================= #
-                        print("1. Check Room Availability")
+                    # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
+                    if receptionist_Option == "1": Check_Room_Availability()
 
-                    elif receptionist_Option == "2":
-                        # ============================================================================================= #
-                        # Book Room: Record a room booking with guest details (name, contact, room number, duration).   #
-                        # ============================================================================================= #
-                        print("2. Book Room")
+                    # Book Room: Record a room booking with guest details (name, contact, room number, duration).
+                    elif receptionist_Option == "2": Booking_Room();
 
                     elif receptionist_Option == "3":
                         # ============================================================================================= #
