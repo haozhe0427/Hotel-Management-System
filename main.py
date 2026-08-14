@@ -1,3 +1,5 @@
+import random
+
 """
 Case Study: Hotel Management System
 The Hotel Management System manages operations related to hotel bookings, guest/customer management,
@@ -34,7 +36,7 @@ Here are four possible roles within the system, each with its unique functionali
 - Record Food Orders: Record food orders from guests, including room number and items ordered.
 - Generate Sales Report: Summarize total sales and most popular dishes.
 """
-from traceback import print_tb
+from random import random
 
 
 # ===================================================================================================================== #
@@ -269,53 +271,229 @@ def Check_Room_Availability():
 
 
 
-def Booking_Room():
-    Check_Room_Availability()
-    roomNumber_ToBooking = input("Please enter room number to booking (press 0 to cancel): ")
+# def Booking_Room():
+#     Check_Room_Availability()
+#     roomNumber_ToBooking = input("Please enter room number to booking (press 0 to cancel): ")
+#
+#     if roomNumber_ToBooking == "":
+#         print("Room number cannot be empty. Please try again.")
+#         return
+#
+#     if roomNumber_ToBooking == "0":
+#         return
+#
+#     updated_Lines = []
+#     booking_Information = []
+#     room_Found = 0
+#
+#     try:
+#         with open('Rooms.txt') as file:
+#             for line in file:
+#                 room_Information = line.strip().split(";")
+#                 roomNumber = room_Information[0]
+#                 roomType = room_Information[1]
+#                 roomPrice = room_Information[2]
+#                 roomAvailability = room_Information[3]
+#
+#                 if roomNumber != roomNumber_ToBooking:
+#                     updated_Lines.append(line)
+#                     continue
+#                 else:
+#                     if roomAvailability == "No":
+#                         print("Room " + roomNumber_ToBooking + " has already been booked.")
+#                         return
+#                     else:
+#                         room_Found += 1
+#                         roomAvailability = "No"
+#                         updated_Lines.append(roomNumber + ";" +
+#                                              roomType + ";" +
+#                                              roomPrice + ";" +
+#                                              roomAvailability + "\n")
+#
+#                         BookingID = "B" + BookingID_Generator("B")
+#                         booking_Information.append(BookingID + ";" +
+#                                                    roomNumber + ";" +
+#                                                    roomType + ";" +
+#                                                    GuestName + ";" +
+#                                                    CheckInDate + ";" +
+#                                                    CheckOutDate)
+#
+#
+#     except FileNotFoundError:
+#         print("Can't read Rooms.txt, Please try again.")
+#
+#     if room_Found == 0:
+#         print("Room " + roomNumber_ToBooking + " does not exist. Please try again.")
+#         return
+#
+#     try:
+#         with open('Rooms.txt', 'w') as file:
+#             file.writelines(updated_Lines)
+#         print("Room " + roomNumber_ToBooking + " booking successfully.")
+#     except FileNotFoundError:
+#         print("Can't read Rooms.txt, Please try again.")
+#
+#     try:
+#         with open('Booking.txt', 'a') as file:
+#             file.writelines(booking_Information)
+#     except FileNotFoundError:
+#         print("Can't read Booking.txt, Please try again.")
 
-    if roomNumber_ToBooking == "":
-        print("Room number cannot be empty. Please try again.")
-        return
 
-    if roomNumber_ToBooking == "0":
-        return
 
-    updated_Lines = []
-    room_Found = 0
+# def BookingID_Generator(prefix):
+#     max_BookingNumber = 0
+#
+#     try:
+#         with open('Booking.txt') as file:
+#             for line in file:
+#                 Booking_Information = line.strip().split(";")
+#                 BookingID = Booking_Information[0]
+#
+#                 if BookingID.startswith(prefix):
+#                     prefix_split_Number = BookingID.split(prefix)
+#                     current_BookingNumber = int(prefix_split_Number[1])
+#
+#                     if current_BookingNumber > max_BookingNumber:
+#                         max_BookingNumber = current_BookingNumber
+#                         return str(max_BookingNumber)
+#
+#     except FileNotFoundError:
+#             print("Can't read Booking.txt, Please try again.")
 
-    try:
-        with open('Rooms.txt') as file:
-            for line in file:
-                room_Information = line.strip().split(";")
-                roomNumber = room_Information[0]
-                roomType = room_Information[1]
-                roomPrice = room_Information[2]
-                roomAvailability = room_Information[3]
 
-                if roomNumber != roomNumber_ToBooking:
-                    updated_Lines.append(line)
-                    continue
-                else:
-                    room_Found += 1
-                    roomAvailability = "No"
-                    updated_Lines.append(roomNumber + ";" +
-                                         roomType + ";" +
-                                         roomPrice + ";" +
-                                         roomAvailability + "\n")
+# def Cancel_Booking():
+#     Check_Room_Availability()
+#     roomNumber_ToCancel = input("Please enter room number to cancel booking: ")
+#
+#     if roomNumber_ToCancel == "":
+#         print("Room number cannot be empty. Please try again.")
+#         return
+#
+#     updated_Lines = []
+#     room_Found = 0
+#
+#     try:
+#         with open('Rooms.txt') as file:
+#             for line in file:
+#                 room_Information = line.strip().split(";")
+#                 roomNumber = room_Information[0]
+#                 roomType = room_Information[1]
+#                 roomPrice = room_Information[2]
+#                 roomAvailability = room_Information[3]
+#
+#                 if roomNumber != roomNumber_ToCancel:
+#                     updated_Lines.append(line)
+#                     continue
+#                 else:
+#                     if roomAvailability == "Yes":
+#                         print("Room " + roomNumber_ToCancel + " has already been canceled.")
+#                         return
+#                     else:
+#                         room_Found += 1
+#                         roomAvailability = "Yes"
+#                         updated_Lines.append(roomNumber + ";" +
+#                                              roomType + ";" +
+#                                              roomPrice + ";" +
+#                                              roomAvailability + "\n")
+#
+#     except FileNotFoundError:
+#         print("Can't read Rooms.txt, Please try again.")
+#
+#     if room_Found == 0:
+#         print("Room " + roomNumber_ToCancel + " does not exist. Please try again.")
+#         return
+#
+#     try:
+#         with open('Rooms.txt', 'w') as file:
+#             file.writelines(updated_Lines)
+#         print("Room " + roomNumber_ToCancel + " canceled successfully.")
+#     except FileNotFoundError:
+#         print("Can't read Rooms.txt, Please try again.")
 
-    except FileNotFoundError:
-        print("Can't read Rooms.txt, Please try again.")
 
-    if room_Found == 0:
-        print("Room " + roomNumber_ToBooking + " does not exist. Please try again.")
-        return
 
-    try:
-        with open('Rooms.txt', 'w') as file:
-            file.writelines(updated_Lines)
-        print("Room " + roomNumber_ToBooking + " booking successfully.")
-    except FileNotFoundError:
-        print("Can't read Rooms.txt, Please try again.")
+# ===================================================================================================================== #
+# RECEPTIONIST FUNCTIONS                                                                                                #
+# ===================================================================================================================== #
+def Order_Food():
+    while True:
+        print("==================== Hotel Management System (Hotel Guest) ====================")
+        print("1. Mains")
+        print("2. Appetizers")
+        print("3. Desserts")
+        print("4. Beverages")
+        print("0. Back")
+
+        MenuType_Option = input("Please select a menu option: ")
+        if MenuType_Option == "":
+            print("Please select a menu option.")
+
+        elif MenuType_Option == "1":
+            print("")
+            print("==================== Mains ====================")
+            try:
+                with open('Menu.txt') as file:
+                    for line in file:
+                        Menu_Information = line.strip().split(",")
+                        MenuType = Menu_Information[2]
+
+                        if MenuType == "Mains":
+                            print(line.strip())
+
+            except FileNotFoundError:
+                print("Can't read Menu.txt, Please try again.")
+
+        elif MenuType_Option == "2":
+            print("")
+            print("==================== Appetizers ====================")
+            try:
+                with open('Menu.txt') as file:
+                    for line in file:
+                        Menu_Information = line.strip().split(",")
+                        MenuType = Menu_Information[2]
+
+                        if MenuType == "Appetizers":
+                            print(line.strip())
+
+            except FileNotFoundError:
+                print("Can't read Menu.txt, Please try again.")
+
+        elif MenuType_Option == "3":
+            print("")
+            print("==================== Desserts ====================")
+            try:
+                with open('Menu.txt') as file:
+                    for line in file:
+                        Menu_Information = line.strip().split(",")
+                        MenuType = Menu_Information[2]
+
+                        if MenuType == "Desserts":
+                            print(line.strip())
+
+            except FileNotFoundError:
+                print("Can't read Menu.txt, Please try again.")
+
+        elif MenuType_Option == "4":
+            print("")
+            print("==================== Beverages ====================")
+            try:
+                with open('Menu.txt') as file:
+                    for line in file:
+                        Menu_Information = line.strip().split(",")
+                        MenuType = Menu_Information[2]
+
+                        if MenuType == "Beverages":
+                            print(line.strip())
+
+            except FileNotFoundError:
+                print("Can't read Menu.txt, Please try again.")
+
+        elif MenuType_Option == "0":
+            break
+
+        else:
+            print("Invalid option. Please try again.")
 
 
 
@@ -388,24 +566,19 @@ def main():
                     if receptionist_Option == "1": Check_Room_Availability()
 
                     # Book Room: Record a room booking with guest details (name, contact, room number, duration).
-                    elif receptionist_Option == "2": Booking_Room();
+                    elif receptionist_Option == "2": # Booking_Room()
+                        print("Booking Room")
 
-                    elif receptionist_Option == "3":
-                        # ============================================================================================= #
-                        # Cancel Booking: Remove a booking and update room availability.                                #
-                        # ============================================================================================= #
-                        print("3. Cancel Booking")
+                    # Cancel Booking: Remove a booking and update room availability.
+                    elif receptionist_Option == "3": # Cancel_Booking()
+                        print("Cancel Booking")
 
+                    # Update Guest Details: Edit guest information for an existing booking.
                     elif receptionist_Option == "4":
-                        # ============================================================================================= #
-                        # Update Guest Details: Edit guest information for an existing booking.                         #
-                        # ============================================================================================= #
                         print("4. Update Guest Details")
 
+                    # View All Bookings: Display all current and past bookings.
                     elif receptionist_Option == "5":
-                        # ============================================================================================= #
-                        # View All Bookings: Display all current and past bookings.                                     #
-                        # ============================================================================================= #
                         print("5. View All Bookings")
 
                     elif receptionist_Option == "0":
@@ -425,9 +598,8 @@ def main():
                     print("==================== Hotel Management System (Hotel Guest) ====================")
                     print("1. View Booking Details")
                     print("2. Cancel Booking")
-                    print("3. View Menu")
-                    print("4. Order Food")
-                    print("5. View Food Orders")
+                    print("3. Order Food")
+                    print("4. View Food Orders")
                     print("0. Back")
                     print("")
                     hotelGuest_Option = input("Please Select your option: ")
@@ -444,22 +616,11 @@ def main():
                         # ============================================================================================= #
                         print("2. Cancel Booking")
 
-                    elif hotelGuest_Option == "3":
-                        # ============================================================================================= #
-                        # View Menu: Browse the restaurant menu with items, categories, and prices.                     #
-                        # ============================================================================================= #
-                        print("3. View Menu")
+                    # Order Food: Select items from the menu, specify quantity, and place an order.
+                    elif hotelGuest_Option == "3": Order_Food()
 
+                    # View Food Orders: Access the list of current food orders placed for the room.
                     elif hotelGuest_Option == "4":
-                        # ============================================================================================= #
-                        # Order Food: Select items from the menu, specify quantity, and place an order.                 #
-                        # ============================================================================================= #
-                        print("4. Order Food")
-
-                    elif hotelGuest_Option == "5":
-                        # ============================================================================================= #
-                        # View Food Orders: Access the list of current food orders placed for the room.                 #
-                        # ============================================================================================= #
                         print("5. View Food Orders")
 
                     elif hotelGuest_Option == "0":
