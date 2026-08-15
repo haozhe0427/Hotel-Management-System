@@ -1,36 +1,36 @@
-A Fish Called Toman,RM 32,Mains
-The Double 'C',RM 30,Mains
-Sally On the Beach,RM 42,Mains
-Sweetie Sally,RM 34,Mains
-D' Lemak,RM 30,Mains
-Queen's Burger,RM 30,Mains
-Into the Wild,RM 32,Mains
-Alle Vongole,RM 30,Mains
-Spice up,RM 26,Mains
-Ooh-La-La,RM 30,Mains
-Tobiko-biko,RM 36,Mains
-Asian Sally,RM 28,Mains
-Avo Salad,RM 20,Appetizers
-Fried Cauliflower,RM 20,Appetizers
-Crispy Fried Chicken,RM 24,Appetizers
-Truffle Fries,RM 20,Appetizers
-French Fries,RM 15,Appetizers
-Sweet Potato Fries,RM 15,Appetizers
-Tater Tots,RM 15,Appetizers
-Muddy Chocolate,RM 18,Desserts
-D' Cheesecake,Rm 18,Desserts
-Greek Yogurt with Granola,RM 18,Desserts
-Earl Grey,RM 10,Beverages
-Jasmine Green,RM 10,Beverages
-English Breakfast,RM 10,Beverages
-Chamomile,RM 10,Beverages
-Orange juice,RM 15,Beverages
-Apple Juice,RM 15,Beverages
-Pinapple Juice,RM 15,Beverages
-Pomegranate Breeze,RM 15,Beverages
-Pinky Grapefruit,RM 15,Beverages
-Rosy Lemonade,RM 15,Beverages
-Berry-Berry,RM 15,Beverages
-Rosy Passion,RM 15,Beverages
-Oat Milk Latte,RM 10,Beverages
-Chicken Ham Pizza,RM 24,Appetizers
+M01,A Fish Called Toman,RM32,Mains
+M02,The Double 'C',RM30,Mains
+M03,Sally On the Beach,RM42,Mains
+M04,Sweetie Sally,RM34,Mains
+M05,D' Lemak,RM30,Mains
+M06,Queen's Burger,RM30,Mains
+M07,Into the Wild,RM32,Mains
+M08,Alle Vongole,RM30,Mains
+M09,Spice up,RM26,Mains
+M10,Ooh-La-La,RM30,Mains
+M11,Tobiko-biko,RM36,Mains
+M12,Asian Sally,RM28,Mains
+A01,Avo Salad,RM20,Appetizers
+A02,Fried Cauliflower,RM20,Appetizers
+A03,Crispy Fried Chicken,RM24,Appetizers
+A04,Truffle Fries,RM20,Appetizers
+A05,French Fries,RM15,Appetizers
+A06,Sweet Potato Fries,RM15,Appetizers
+A07,Tater Tots,RM15,Appetizers
+A08,Chicken Ham Pizza,RM24,Appetizers
+D01,Muddy Chocolate,RM18,Desserts
+D02,D' Cheesecake,RM18,Desserts
+D03,Greek Yogurt with Granola,RM18,Desserts
+B01,Earl Grey,RM10,Beverages
+B02,Jasmine Green,RM10,Beverages
+B03,English Breakfast,RM10,Beverages
+B04,Chamomile,RM10,Beverages
+B05,Orange juice,RM15,Beverages
+B06,Apple Juice,RM15,Beverages
+B07,Pinapple Juice,RM15,Beverages
+B08,Pomegranate Breeze,RM15,Beverages
+B09,Pinky Grapefruit,RM15,Beverages
+B10,Rosy Lemonade,RM15,Beverages
+B11,Berry-Berry,RM15,Beverages
+B12,Rosy Passion,RM15,Beverages
+B13,Oat Milk Latte,RM10,Beverages

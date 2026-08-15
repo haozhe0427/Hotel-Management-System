@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="Receptionist functions:&#10;- Check_Room_Availability() : View available rooms based on type (e.g., Single, Double, Suite).&#10;- Booking_Room() : Record a room booking with guest details (name, contact, room number, duration).">
+    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="- Receptionist is required to receive booking request that made by hotel guest then approve / reject&#10;- Implement view different menu type (Main, Appetizers, ...) for Order_Food() From Hotel Guest role">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Booking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Booking.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Menu.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Menu.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786188952221</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="- Receptionist is required to receive booking request that made by hotel guest then approve / reject&#10;- Implement view different menu type (Main, Appetizers, ...) for Order_Food() From Hotel Guest role">
+      <option name="closed" value="true" />
+      <created>1786695247286</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1786695247286</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +147,7 @@
     <MESSAGE value="Administrator's functions:&#10;- Add_New_Rooms(): Add details of new rooms (Room number, type, price, availability). &#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- View_All_Data: Display all room and booking information for administrative review." />
     <MESSAGE value="Modify &amp; Write Administrator's functions:&#10;- Remove_Rooms(): Remove a room from the system by its room number.&#10;- Update_Room_Information(): Edit room details (e.g., price, availability status)." />
     <MESSAGE value="Receptionist functions:&#10;- Check_Room_Availability() : View available rooms based on type (e.g., Single, Double, Suite).&#10;- Booking_Room() : Record a room booking with guest details (name, contact, room number, duration)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Receptionist functions:&#10;- Check_Room_Availability() : View available rooms based on type (e.g., Single, Double, Suite).&#10;- Booking_Room() : Record a room booking with guest details (name, contact, room number, duration)." />
+    <MESSAGE value="- Receptionist is required to receive booking request that made by hotel guest then approve / reject&#10;- Implement view different menu type (Main, Appetizers, ...) for Order_Food() From Hotel Guest role" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Receptionist is required to receive booking request that made by hotel guest then approve / reject&#10;- Implement view different menu type (Main, Appetizers, ...) for Order_Food() From Hotel Guest role" />
   </component>
 </project>
