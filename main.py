@@ -61,13 +61,15 @@ def credential_Validation(role_name):
     input_Username = input("Username: ")
     input_Password = input("Password: ")
     print("")
+
     try:
         with open('Account.txt') as file:
             for line in file:
                 user_Information = line.strip().split(";")
-                username = user_Information[3]
-                password = user_Information[4]
-                userRole = user_Information[5]
+                username         = user_Information[3]
+                password         = user_Information[4]
+                userRole         = user_Information[5]
+
                 if username == input_Username and password == input_Password:
                     if userRole == role_name:
                         print("login Successful")
@@ -75,6 +77,7 @@ def credential_Validation(role_name):
                     else:
                         print("Invalid role. Please try again")
                         return False
+
             print("Invalid Account. Please try again.")
             return False
     except FileNotFoundError:
@@ -95,7 +98,8 @@ def Add_New_Rooms():
         with open('Rooms.txt') as file:
             for line in file:
                 room_information = line.strip().split(";")
-                roomNumber = room_information[0]
+                roomNumber       = room_information[0]
+
                 if roomNumber == new_RoomNumber:
                     print("Room Number Already Exists")
                     return
@@ -107,12 +111,9 @@ def Add_New_Rooms():
 
     # 2. Input Room Type
     roomType_Option = input("Please Select your room type (1. Single / 2. Double / 3. Suite): ")
-    if roomType_Option == "1":
-        roomType = "Single"
-    elif roomType_Option == "2":
-        roomType = "Double"
-    elif roomType_Option == "3":
-        roomType = "Suite"
+    if roomType_Option   == "1": roomType = "Single"
+    elif roomType_Option == "2": roomType = "Double"
+    elif roomType_Option == "3": roomType = "Suite"
     else:
         print("Invalid room type. Please try again.")
         return
@@ -124,7 +125,9 @@ def Add_New_Rooms():
         return
     try:
         with open('Rooms.txt', 'a') as file:
-            file.write(new_RoomNumber + ";" + roomType + ";RM "+ roomPrice + ";Yes\n")
+            file.write(new_RoomNumber + ";" +
+                       roomType + ";RM "+
+                       roomPrice + ";Yes\n")
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
 
@@ -141,19 +144,18 @@ def Remove_Rooms():
         return
 
     updated_Lines = []
-    room_Found = 0
+    room_Found    = 0
 
     try:
         with open('Rooms.txt') as file:
             for line in file:
                 room_Information = line.strip().split(";")
-                roomNumber = room_Information[0]
+                roomNumber       = room_Information[0]
 
                 if roomNumber == roomNumber_ToDelete:
                     room_Found += 1
                     updated_Lines.append('')
-                else:
-                    updated_Lines.append(line)
+                else: updated_Lines.append(line)
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
         return
@@ -180,24 +182,25 @@ def Update_Room_Information():
         return
 
     updated_Lines = []
-    room_Found = 0
+    room_Found    = 0
 
     try:
         with open('Rooms.txt') as file:
             for line in file:
                 room_Information = line.strip().split(";")
-                roomNumber = room_Information[0]
-                roomType = room_Information[1]
-                roomPrice = room_Information[2]
+                roomNumber       = room_Information[0]
+                roomType         = room_Information[1]
+                roomPrice        = room_Information[2]
                 roomAvailability = room_Information[4]
 
                 if roomNumber == roomNumber_ToUpdate:
                     room_Found += 1
+
                     while True:
                         print("")
-                        print("Room Number: " + roomNumber)
-                        print("Room Type: " + roomType)
-                        print("Room Price: " + roomPrice)
+                        print("Room Number: "  + roomNumber)
+                        print("Room Type: "    + roomType)
+                        print("Room Price: "   + roomPrice)
                         print("Availability: " + roomAvailability)
                         print("")
                         print("1. Room Type")
@@ -206,23 +209,18 @@ def Update_Room_Information():
                         print("0. Exit / Finish")
                         updateOption = input("Please select a room " + roomNumber_ToUpdate + " information to update: ")
 
-                        if updateOption == "1":
-                            roomType = input("Please enter new room type: ")
-                        elif updateOption == "2":
-                            roomPrice = input("Please enter new room price: RM ")
+                        if updateOption   == "1": roomType  = input("Please enter new room type: ")
+                        elif updateOption == "2": roomPrice = input("Please enter new room price: RM ")
                         elif updateOption == "3":
                             if roomAvailability == "Yes":
                                 roomAvailability = "No"
                             else:
                                 roomAvailability = "Yes"
-                        elif updateOption == "0":
-                            break
-                        else:
-                            print("Invalid option. Please try again.")
+                        elif updateOption == "0": break
+                        else: print("Invalid option. Please try again.")
                     updated_Lines.append(roomNumber_ToUpdate + ";" + roomType + ";RM " + roomPrice + ";" + roomAvailability + "\n")
                 else:
                     updated_Lines.append(line)
-
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
         return
@@ -262,10 +260,8 @@ def Check_Room_Availability():
                 room_Information = line.strip().split(";")
                 roomAvailability = room_Information[3]
 
-                if roomAvailability == "Yes":
-                    print(line.strip())
+                if roomAvailability == "Yes": print(line.strip())
             print("")
-
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
 
@@ -423,23 +419,22 @@ def View_Menu():
         with open('Menu.txt') as file:
             for line in file:
                 MenuItem_Information = line.strip().split(",")
-                MenuType = MenuItem_Information[3]
+                MenuType             = MenuItem_Information[3]
 
-                if MenuType == "Mains":
-                    print(line.strip())
+                # Display Mains
+                if MenuType == "Mains":        print(line.strip())
 
-                elif MenuType == "Appetizers":
-                    print(line.strip())
+                # Display Appetizers
+                elif MenuType == "Appetizers": print(line.strip())
 
-                elif MenuType == "Desserts":
-                    print(line.strip())
+                # Display Desserts
+                elif MenuType == "Desserts":   print(line.strip())
 
-                elif MenuType == "Beverages":
-                    print(line.strip())
+                # Display Beverages
+                elif MenuType == "Beverages":  print(line.strip())
 
             print("End of Menu")
             print("")
-
     except FileNotFoundError:
         print("Can't read Menu.txt, Please try again.")
 
@@ -453,14 +448,15 @@ def Order_Food():
         SelectedMenuItem_ID = input("Please enter Menu Item ID to order: ")
 
         Ordered_MenuItem = []
-        MenuItem_Found = 0
+        MenuItem_Found   = 0
+
         try:
             with open('Menu.txt') as file:
                 for line in file:
                     MenuItem_Information = line.strip().split(",")
-                    MenuItem_ID = MenuItem_Information[0]
-                    MenuItem_Name = MenuItem_Information[1]
-                    MenuItem_Price = MenuItem_Information[2]
+                    MenuItem_ID          = MenuItem_Information[0]
+                    MenuItem_Name        = MenuItem_Information[1]
+                    MenuItem_Price       = MenuItem_Information[2]
 
                     if SelectedMenuItem_ID == MenuItem_ID:
                         MenuItem_Found += 1
@@ -499,7 +495,6 @@ def Order_Food():
             with open('OrderedMenuItem.txt', 'a') as file:
                 file.writelines(Ordered_MenuItem)
             print("Menu Item has been moved to cart.")
-
         except FileNotFoundError:
             print("Can't read Menu.txt, Please try again.")
 
@@ -515,7 +510,6 @@ def Add_Memu_Items():
     print("3. Add New Desserts")
     print("4. Add New Beverages")
 
-
     # 1. Menu Number
     newMenuType = input("Please enter new Menu Item Type: ")
     prefix_map = {"1": "M",
@@ -527,10 +521,9 @@ def Add_Memu_Items():
         print("Invalid Menu Item Type. Please try again.")
         return
 
-    prefix = prefix_map[newMenuType]
+    prefix         = prefix_map[newMenuType]
     new_MenuItemID = prefix + MenuID_Generator(prefix)
     print("new Menu Item ID: " + new_MenuItemID)
-
 
     # 2. Input new Menu Item
     newMenuName = input("Please enter new Menu Item Name: ")
@@ -538,33 +531,29 @@ def Add_Memu_Items():
         print("Please enter Menu Item Name.")
         return
 
-
     # 3. Input Menu Price
     menuPrice = input("Please enter menu price: RM")
     if not menuPrice.isnumeric():
         print("Invalid menu price. Please try again.")
         return
 
-
     # 4. Input Menu Type
     menuType_Option = input("Please Select your menu type (1. Mains / 2. Appetizers / 3. Desserts / 4. Beverages): ")
-    if menuType_Option == "1":
-        menuType = "Mains"
-    elif menuType_Option == "2":
-        menuType = "Appetizers"
-    elif menuType_Option == "3":
-        menuType = "Desserts"
-    elif menuType_Option == "4":
-        menuType = "Beverages"
+    if menuType_Option   == "1": menuType = "Mains"
+    elif menuType_Option == "2": menuType = "Appetizers"
+    elif menuType_Option == "3": menuType = "Desserts"
+    elif menuType_Option == "4": menuType = "Beverages"
     else:
         print("Invalid menu type. Please try again.")
         return
 
-
     # Write in Menu.txt
     try:
         with open('Menu.txt', 'a') as file:
-            file.write(new_MenuItemID + "," + newMenuName + ",RM " + menuPrice + "," + menuType + "\n")
+            file.write(new_MenuItemID + "," +
+                       newMenuName + ",RM " +
+                       menuPrice + "," +
+                       menuType + "\n")
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
 
@@ -579,18 +568,93 @@ def MenuID_Generator(prefix):
         with open('Menu.txt') as file:
             for line in file:
                 MenuItem_Information = line.strip().split(",")
-                MenuID = MenuItem_Information[0]
+                MenuID               = MenuItem_Information[0]
 
                 if MenuID.startswith(prefix):
                     current_MenuNumber = int(MenuID.split(prefix)[1])
-
                     if current_MenuNumber > max_MenuNumber:
                         max_MenuNumber = current_MenuNumber
-
     except FileNotFoundError:
             print("Can't read Booking.txt, Please try again.")
 
     return str(max_MenuNumber + 1)
+
+
+
+def Update_Menu_Item():
+    print("==================== Update Room Information =====================")
+    MenuID_ToUpdate = input("Please enter menu ID to update: ").strip()
+
+    if MenuID_ToUpdate == "":
+        print("Menu ID cannot be empty. Please try again.")
+        return
+
+    updated_Lines  = []
+    menuItem_Found = 0
+
+    try:
+        with open('Menu.txt') as file:
+            for line in file:
+                menu_Information = line.strip().split(",")
+                MenuID           = menu_Information[0]
+                MenuName         = menu_Information[1]
+                MenuPrice        = menu_Information[2]
+                MenuType         = menu_Information[3]
+
+                if MenuID == MenuID_ToUpdate:
+                    menuItem_Found += 1
+                    while True:
+                        print("")
+                        print("Menu ID: "    + MenuID)
+                        print("Menu Name: "  + MenuName)
+                        print("Menu Price: " + MenuPrice)
+                        print("Menu Type: "  + MenuType)
+                        print("")
+                        print("1. Menu Name")
+                        print("2. Menu Price")
+                        print("3. Menu Type")
+                        print("0. Exit / Finish")
+                        updateOption = input("Please select a room " + MenuID_ToUpdate + " information to update: ")
+
+                        if updateOption   == "1": MenuName  = input("Please enter new menu item name: ")
+                        elif updateOption == "2": MenuPrice = input("Please enter new menu item price: RM ")
+                        elif updateOption == "3":
+                            print("")
+                            print("1. Mains")
+                            print("2. Appetizers")
+                            print("3. Desserts")
+                            print("4. Beverages")
+                            newMenuType_Option = input("Please enter new menu item type: ")
+
+                            if newMenuType_Option   == "1": MenuName = "Mains"
+                            elif newMenuType_Option == "2": MenuName = "Appetizers"
+                            elif newMenuType_Option == "3": MenuName = "Desserts"
+                            elif newMenuType_Option == "4": MenuName = "Beverages"
+                            else: print("Invalid menu item type. Please try again.")
+
+                        elif updateOption == "0": break
+                        else: print("Invalid option. Please try again.")
+
+                    updated_Lines.append(MenuID_ToUpdate + "," +
+                                         MenuName + ",RM " +
+                                         MenuPrice + "," +
+                                         MenuType + "\n")
+                else: updated_Lines.append(line)
+
+    except FileNotFoundError:
+        print("Can't read Menu.txt, Please try again.")
+        return
+
+    if menuItem_Found == 0:
+        print("Menu " + MenuID_ToUpdate + " does not exist. Please try again.")
+        return
+
+    try:
+        with open('Menu.txt', 'w') as file:
+            file.writelines(updated_Lines)
+        print("Room " + MenuID_ToUpdate + " updated successfully.")
+    except FileNotFoundError:
+        print("Can't read Menu.txt, Please try again.")
 
 
 
@@ -606,35 +670,22 @@ def main():
             if credential_Validation("Administrator"):
                 while True:
                     print("==================== Hotel Management System (Administrator) ====================")
-                    print("1. Add New Rooms")
-                    print("2. Remove Rooms")
-                    print("3. Update Room Information")
-                    print("4. Generate Reports")
-                    print("5. View All Data")
-                    print("0. Back")
+                    print("1. Add New Rooms")           # Add New Rooms: Add details of new rooms (Room number, type, price, availability).
+                    print("2. Remove Rooms")            # Remove Rooms: Remove a room from the system by its room number.
+                    print("3. Update Room Information") # Update Room Information: Edit room details (e.g., price, availability status).
+                    print("4. Generate Reports")        # Generate Reports: Summarize total bookings and room availability.
+                    print("5. View All Data")           # View All Data: Display all room and booking information for administrative review.
+                    print("0. Back")                    # Back to Main Dashboard
                     print("")
                     administrator_Option = input("Please Select your option: ")
 
-                    # Add New Rooms: Add details of new rooms (Room number, type, price, availability).
-                    if administrator_Option == "1": Add_New_Rooms()
-
-                    # Remove Rooms: Remove a room from the system by its room number.
+                    if administrator_Option   == "1": Add_New_Rooms()
                     elif administrator_Option == "2": Remove_Rooms()
-
-                    # Update Room Information: Edit room details (e.g., price, availability status).
                     elif administrator_Option == "3": Update_Room_Information()
-
-                    # Generate Reports: Summarize total bookings and room availability.
                     elif administrator_Option == "4": print("4. Generate Reports")
-
-                    # View All Data: Display all room and booking information for administrative review.
                     elif administrator_Option == "5": View_All_Data()
-
-                    # Back to Main Dashboard
                     elif administrator_Option == "0": break
-
-                    # Invalid input
-                    else: print("Invalid Option. Please try again")
+                    else:                             print("Invalid Option. Please try again") # Invalid input
 
         # ============================================================================================================= #
         # RECEPTIONIST                                                                                                  #
@@ -643,39 +694,22 @@ def main():
             if credential_Validation("Receptionist"):
                 while True:
                     print("==================== Hotel Management System (Receptionist) ====================")
-                    print("1. Check Room Availability")
-                    print("2. Book Room")
-                    print("3. Cancel Booking")
-                    print("4. Update Guest Details")
-                    print("5. View All Bookings")
-                    print("0. Back")
+                    print("1. Check Room Availability") # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
+                    print("2. View Booking Request")    # View Booking Request: View a room booking request (accept / reject)
+                    print("3. Cancel Booking")          # Cancel Booking: Remove a booking and update room availability.
+                    print("4. Update Guest Details")    # Update Guest Details: Edit guest information for an existing booking.
+                    print("5. View All Bookings")       # View All Bookings: Display all current and past bookings.
+                    print("0. Back")                    # Back to Main Dashboard
                     print("")
                     receptionist_Option = input("Please Select your option: ")
 
-                    # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
-                    if receptionist_Option == "1": Check_Room_Availability()
-
-                    # Book Room: Record a room booking with guest details (name, contact, room number, duration).
-                    elif receptionist_Option == "2": # Booking_Room()
-                        print("Booking Room")
-
-                    # Cancel Booking: Remove a booking and update room availability.
-                    elif receptionist_Option == "3": # Cancel_Booking()
-                        print("Cancel Booking")
-
-                    # Update Guest Details: Edit guest information for an existing booking.
-                    elif receptionist_Option == "4":
-                        print("4. Update Guest Details")
-
-                    # View All Bookings: Display all current and past bookings.
-                    elif receptionist_Option == "5":
-                        print("5. View All Bookings")
-
-                    # Back to Main Dashboard
+                    if receptionist_Option   == "1": Check_Room_Availability()
+                    elif receptionist_Option == "2": print("Booking Room")
+                    elif receptionist_Option == "3": print("Cancel Booking")
+                    elif receptionist_Option == "4": print("4. Update Guest Details")
+                    elif receptionist_Option == "5": print("5. View All Bookings")
                     elif receptionist_Option == "0": break
-
-                    # Invalid Input
-                    else: print("Invalid Option. Please try again")
+                    else:                            print("Invalid Option. Please try again") # Invalid Input
 
         # ============================================================================================================= #
         # HOTEL GUEST                                                                                                   #
@@ -684,34 +718,22 @@ def main():
             if credential_Validation("Hotel Guest"):
                 while True:
                     print("==================== Hotel Management System (Hotel Guest) ====================")
-                    print("1. View Booking Details")
-                    print("2. Booking Room")
-                    print("3. Cancel Booking")
-                    print("4. View Menu")
-                    print("5. Order Food")
-                    print("0. Back")
+                    print("1. View Booking Details") # View Booking Details: Access booking details (room number, dates, price).
+                    print("2. Booking Room")         # Book Room: Book a room booking with guest details (name, contact, room number, duration).
+                    print("3. Cancel Booking")       # Cancel Booking: Request to cancel a booking.
+                    print("4. View Menu")            # View Food Orders: Access the list of current food orders placed for the room.
+                    print("5. Order Food")           # Order Food: Select items from the menu, specify quantity, and place an order.
+                    print("0. Back")                 # Back to Main Dashboard
                     print("")
                     hotelGuest_Option = input("Please Select your option: ")
 
-                    # View Booking Details: Access booking details (room number, dates, price).
-                    if hotelGuest_Option == "1": print("1. View Booking Details")
-
+                    if hotelGuest_Option   == "1": print("1. View Booking Details")
                     elif hotelGuest_Option == "2": print("2. Booking Room")
-
-                    # Cancel Booking: Request to cancel a booking.
                     elif hotelGuest_Option == "3": print("Cancel booking")
-
-                    # View Food Orders: Access the list of current food orders placed for the room.
                     elif hotelGuest_Option == "4": View_Menu()
-
-                    # Order Food: Select items from the menu, specify quantity, and place an order.
                     elif hotelGuest_Option == "5": Order_Food()
-
-                    # Back to Main Dashboard
                     elif hotelGuest_Option == "0": break
-
-                    # Invalid Input
-                    else: print("Invalid Option. Please try again")
+                    else:                          print("Invalid Option. Please try again") # Invalid Input
 
         # ============================================================================================================= #
         # RESTAURANT MANAGER                                                                                            #
@@ -720,45 +742,31 @@ def main():
             if credential_Validation("Restaurant Manager"):
                 while True:
                     print("==================== Hotel Management System (Restaurant Manager) ====================")
-                    print("1. Add New Menu Items")
-                    print("2. Update Menu Items")
-                    print("3. View Menu")
-                    print("4. Record Food Orders")
-                    print("5. Generate Sales Report")
-                    print("0. Back")
+                    print("1. Add New Menu Items")    # Add New Menu Items: Record new dishes to the menu (name, price, category).
+                    print("2. Update Menu Items")     # Update Menu Items: Edit details of existing menu items (e.g., price or availability).
+                    print("3. View Menu")             # View Menu: Display the current menu with all items and prices.
+                    print("4. Record Food Orders")    # Record Food Orders: Record food orders from guests, including room number and items ordered.
+                    print("5. Generate Sales Report") # Generate Sales Report: Summarize total sales and most popular dishes.
+                    print("0. Back")                  # Back to Main Dashboard
                     print("")
                     restaurantManager_Option = input("Please Select your option: ")
 
-                    # Add New Menu Items: Record new dishes to the menu (name, price, category).
-                    if restaurantManager_Option == "1": Add_Memu_Items()
-
-                    # Update Menu Items: Edit details of existing menu items (e.g., price or availability).
-                    elif restaurantManager_Option == "2": print("2. Update Menu Items")
-
-                    # View Menu: Display the current menu with all items and prices.
+                    if restaurantManager_Option   == "1": Add_Memu_Items()
+                    elif restaurantManager_Option == "2": Update_Menu_Item()
                     elif restaurantManager_Option == "3": View_Menu()
-
-                    # Record Food Orders: Record food orders from guests, including room number and items ordered.
                     elif restaurantManager_Option == "4": print("4. Record Food Orders")
-
-                    # Generate Sales Report: Summarize total sales and most popular dishes.
                     elif restaurantManager_Option == "5": print("5. Generate Sales Report")
-
                     elif restaurantManager_Option == "0": break
-
-                    else: print("Invalid Option. Please try again")
+                    else:                                 print("Invalid Option. Please try again")
 
         elif role_Selected == "0":
             print("==================== Hotel Management System ====================")
             choice = input("Are you sure you want to exit? (Y/N): ")
-            if choice.capitalize() == "Y":
-                mainDashboard_isRunning = False
-            elif choice.capitalize() == "N":
-                print("Continuing...")
-            else:
-                print("Invalid Input. Please try again.")
 
-        else:
-            print("Invalid Role. Please try again.")
+            if choice.capitalize()   == "Y": break
+            elif choice.capitalize() == "N": print("Continuing...")
+            else:                            print("Invalid Input. Please try again.")
+
+        else: print("Invalid Role. Please try again.")
 
 main()
