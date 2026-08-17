@@ -37,6 +37,17 @@ Here are four possible roles within the system, each with its unique functionali
 
 
 
+class User:
+    def __init__(self, account_id, name, phoneNumber, userName, password, role):
+        self.account_id  = account_id
+        self.name        = name
+        self.phoneNumber = phoneNumber
+        self.userName    = userName
+        self.password    = password
+        self.role        = role
+
+
+
 # ===================================================================================================================== #
 # Main Dashboard                                                                                                        #
 # ===================================================================================================================== #
@@ -66,23 +77,24 @@ def credential_Validation(role_name):
         with open('Account.txt') as file:
             for line in file:
                 user_Information = line.strip().split(";")
-                username         = user_Information[3]
-                password         = user_Information[4]
-                userRole         = user_Information[5]
+                user = User(user_Information[0], user_Information[1], user_Information[2],
+                            user_Information[3], user_Information[4], user_Information[5])
 
-                if username == input_Username and password == input_Password:
-                    if userRole == role_name:
+                # user = User(account_id, name, phoneNumber,userName, password, role)
+
+                if input_Username == user.userName and input_Password == user.password:
+                    if user.role == role_name:
                         print("login Successful")
-                        return True
+                        return user
                     else:
                         print("Invalid role. Please try again")
-                        return False
+                        return None
 
             print("Invalid Account. Please try again.")
-            return False
+            return None
     except FileNotFoundError:
         print("Can't read Account.txt, Please try again.")
-        return False
+        return None
 
 
 
@@ -667,9 +679,11 @@ def main():
         # ADMINISTRATOR                                                                                                 #
         # ============================================================================================================= #
         if role_Selected == "1":
-            if credential_Validation("Administrator"):
+            logged_in_user = credential_Validation("Administrator")
+            if logged_in_user:
                 while True:
                     print("==================== Hotel Management System (Administrator) ====================")
+                    print("WELCOME BACK, " + logged_in_user.userName)
                     print("1. Add New Rooms")           # Add New Rooms: Add details of new rooms (Room number, type, price, availability).
                     print("2. Remove Rooms")            # Remove Rooms: Remove a room from the system by its room number.
                     print("3. Update Room Information") # Update Room Information: Edit room details (e.g., price, availability status).
@@ -691,9 +705,11 @@ def main():
         # RECEPTIONIST                                                                                                  #
         # ============================================================================================================= #
         elif role_Selected == "2":
-            if credential_Validation("Receptionist"):
+            logged_in_user = credential_Validation("Receptionist")
+            if logged_in_user:
                 while True:
                     print("==================== Hotel Management System (Receptionist) ====================")
+                    print("WELCOME BACK, " + logged_in_user.userName)
                     print("1. Check Room Availability") # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
                     print("2. View Booking Request")    # View Booking Request: View a room booking request (accept / reject)
                     print("3. Cancel Booking")          # Cancel Booking: Remove a booking and update room availability.
@@ -715,9 +731,11 @@ def main():
         # HOTEL GUEST                                                                                                   #
         # ============================================================================================================= #
         elif role_Selected == "3":
-            if credential_Validation("Hotel Guest"):
+            logged_in_user = credential_Validation("Hotel Guest")
+            if logged_in_user:
                 while True:
                     print("==================== Hotel Management System (Hotel Guest) ====================")
+                    print("WELCOME BACK, " + logged_in_user.userName)
                     print("1. View Booking Details") # View Booking Details: Access booking details (room number, dates, price).
                     print("2. Booking Room")         # Book Room: Book a room booking with guest details (name, contact, room number, duration).
                     print("3. Cancel Booking")       # Cancel Booking: Request to cancel a booking.
@@ -739,9 +757,11 @@ def main():
         # RESTAURANT MANAGER                                                                                            #
         # ============================================================================================================= #
         elif role_Selected == "4":
-            if credential_Validation("Restaurant Manager"):
+            logged_in_user = credential_Validation("Restaurant Manager")
+            if logged_in_user:
                 while True:
                     print("==================== Hotel Management System (Restaurant Manager) ====================")
+                    print("WELCOME BACK, " + logged_in_user.userName)
                     print("1. Add New Menu Items")    # Add New Menu Items: Record new dishes to the menu (name, price, category).
                     print("2. Update Menu Items")     # Update Menu Items: Edit details of existing menu items (e.g., price or availability).
                     print("3. View Menu")             # View Menu: Display the current menu with all items and prices.
