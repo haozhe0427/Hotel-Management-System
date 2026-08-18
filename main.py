@@ -253,12 +253,23 @@ def Update_Room_Information():
 
 def View_All_Data():
     print("==================== View All Data ====================")
+    print("All Rooms")
     try:
         with open('Rooms.txt') as file:
             for line in file:
                 print(line.strip())
     except FileNotFoundError:
         print("Can't read Rooms.txt, Please try again.")
+    print("")
+
+    print("Booking Information")
+    try:
+        with open('Booking.txt') as file:
+            for line in file:
+                print(line.strip())
+    except FileNotFoundError:
+        print("Can't read Booking.txt, Please try again.")
+    print("")
 
 
 
@@ -403,7 +414,23 @@ def View_Booking_Request():
 # ===================================================================================================================== #
 # HOTEL GUEST FUNCTIONS                                                                                                 #
 # ===================================================================================================================== #
+def View_Booking_Details(user):
+    print("==================== View Booking Details ====================");
+    try:
+        with open('Booking.txt') as file:
+            for line in file:
+                booking_Information = line.strip().split(";")
+                guestName = booking_Information[3]
+
+                if guestName == user.name:
+                    print(line.strip())
+    except FileNotFoundError:
+        print("Can't read Booking.txt, Please try again.")
+
+
+
 def Booking_Room(user):
+    print("==================== Booking Room ====================");
     Check_Room_Availability()
     roomNumber_ToBooking = input("Please enter room number to booking (press 0 to cancel): ")
 
@@ -480,6 +507,60 @@ def Booking_Room(user):
     try:
         with open('Booking.txt', 'a') as file:
             file.writelines(booking_Information)
+    except FileNotFoundError:
+        print("Can't read Booking.txt, Please try again.")
+
+
+
+def Cancel_Booking(user):
+    print("==================== Cancel Booking ======================");
+    updated_Lines = []
+    guestName_Found = 0
+
+    try:
+        with open('Booking.txt') as file:
+            for line in file:
+                booking_Information = line.strip().split(";")
+                BookingID           = booking_Information[0]
+                roomNumber          = booking_Information[1]
+                roomType            = booking_Information[2]
+                guestName           = booking_Information[3]
+                checkInDate         = booking_Information[4]
+                checkOutDate        = booking_Information[5]
+
+                if guestName == user.name:
+                    guestName_Found += 1
+                    print(line.strip())
+                    print("")
+
+                BookingID_ToCancel = input("Please enter BookingID to cancel(press 0 to exit): ")
+
+                if BookingID_ToCancel == "":
+                    print("BookingID cannot be empty. Please try again.")
+                    return
+
+                if BookingID_ToCancel == "0":
+                    print("Invalid BookingID. Please try again.")
+                    return
+
+                if BookingID_ToCancel == BookingID:
+                    status = "Request Cancel"
+                    updated_Lines.append(BookingID + ";" + roomNumber + ";" + roomType + ";" +
+                                               user.name + ";" + str(checkInDate) + ";" + str(checkOutDate) + ";" +
+                                               status + "\n")
+                else:
+                    updated_Lines.append(line)
+    except FileNotFoundError:
+        print("Can't read Booking.txt, Please try again.")
+
+    if guestName_Found == 0:
+        print("Empty Room Booking")
+        return
+
+    try:
+        with open('Booking.txt', 'w') as file:
+            file.writelines(updated_Lines)
+        print("Booking " + BookingID + " status updated to request cancel successfully.")
     except FileNotFoundError:
         print("Can't read Booking.txt, Please try again.")
 
@@ -783,12 +864,12 @@ def main():
                 while True:
                     print("==================== Hotel Management System (Receptionist) ====================")
                     print("WELCOME BACK, " + logged_in_user.userName)
-                    print("1. Check Room Availability") # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
-                    print("2. View Booking Request")    # View Booking Request: View a room booking request (accept / reject)
-                    print("3. Cancel Booking")          # Cancel Booking: Remove a booking and update room availability.
-                    print("4. Update Guest Details")    # Update Guest Details: Edit guest information for an existing booking.
-                    print("5. View All Bookings")       # View All Bookings: Display all current and past bookings.
-                    print("0. Back")                    # Back to Main Dashboard
+                    print("1. Check Room Availability")     # Check Room Availability: View available rooms based on type (e.g., Single, Double, Suite).
+                    print("2. View Booking Request")        # View Booking Request: View a room booking request (accept / reject)
+                    print("3. View Cancel Booking Request") # Cancel Booking: Remove a booking and update room availability.
+                    print("4. Update Guest Details")        # Update Guest Details: Edit guest information for an existing booking.
+                    print("5. View All Bookings")           # View All Bookings: Display all current and past bookings.
+                    print("0. Back")                        # Back to Main Dashboard
                     print("")
                     receptionist_Option = input("Please Select your option: ")
 
@@ -818,9 +899,9 @@ def main():
                     print("")
                     hotelGuest_Option = input("Please Select your option: ")
 
-                    if hotelGuest_Option   == "1": print("1. View Booking Details")
+                    if hotelGuest_Option   == "1": View_Booking_Details(logged_in_user)
                     elif hotelGuest_Option == "2": Booking_Room(logged_in_user)
-                    elif hotelGuest_Option == "3": print("Cancel booking")
+                    elif hotelGuest_Option == "3": Cancel_Booking(logged_in_user)
                     elif hotelGuest_Option == "4": View_Menu()
                     elif hotelGuest_Option == "5": Order_Food()
                     elif hotelGuest_Option == "0": break

@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="- Apply OOP concept">
+    <list default="true" id="8f3840ab-b208-4068-837d-19a1ef2f653b" name="Changes" comment="- Receptionist able to see booking request from hotel guest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Booking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Booking.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rooms.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Rooms.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +71,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-6fa658e1df1a-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.8665.369" />
+        <option value="bundled-python-sdk-821f704e66d9-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.9437.214" />
       </set>
     </attachedChunks>
   </component>
@@ -172,7 +171,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786950637416</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="- Receptionist able to see booking request from hotel guest">
+      <option name="closed" value="true" />
+      <created>1786958173667</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1786958173667</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +196,7 @@
     <MESSAGE value="- Hotel Guest able to attempt order food&#10;- Implement Add_Menu_Items() for Restaurant Manager" />
     <MESSAGE value="- Clean Code Structure&#10;- Implement Update_Menu_Items() for Restaurant Manager" />
     <MESSAGE value="- Apply OOP concept" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Apply OOP concept" />
+    <MESSAGE value="- Receptionist able to see booking request from hotel guest" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Receptionist able to see booking request from hotel guest" />
   </component>
 </project>
